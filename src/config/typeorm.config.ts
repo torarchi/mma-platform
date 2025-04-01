@@ -1,26 +1,14 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { FighterOrmEntity } from '../infrastructure/database/typeorm/fighter.orm-entity';
-import { EventOrmEntity } from '../infrastructure/database/typeorm/event.orm-entity';
-import { FightOrmEntity } from '../infrastructure/database/typeorm/fight.orm-entity';
-import { RankingOrmEntity } from '../infrastructure/database/typeorm/ranking.orm-entity';
-import { FighterStatisticsOrmEntity } from '../infrastructure/database/typeorm/fighter-statistics.orm-entity';
-import { EventLocationOrmEntity } from '../infrastructure/database/typeorm/event-location.orm-entity';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: 'your_password',
-  database: 'mma_db',
+  host: process.env.DB_HOST,
+  port: Number(process.env.DB_PORT) || 5432,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
   synchronize: true, // dev only, prod = false + миграции
   autoLoadEntities: true,
-  entities: [
-    FighterOrmEntity,
-    EventOrmEntity,
-    FightOrmEntity,
-    RankingOrmEntity,
-    FighterStatisticsOrmEntity,
-    EventLocationOrmEntity,
-  ],
 };
