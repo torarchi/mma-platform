@@ -23,6 +23,15 @@ export class FightResolver {
     return this.fightService.findById(id);
   }
 
+  @Query(() => [FightType])
+  async getFighterFightHistory(@Args('fighterId') fighterId: string) {
+    const fights = await this.fightService.findAll();
+    return fights.filter(
+      (fight) =>
+        fight.fighter1Id === fighterId || fight.fighter2Id === fighterId,
+    );
+  }
+
   @Mutation(() => FightType)
   async createFight(@Args('input') input: CreateFightInput) {
     const fight = await this.fightService.create({
@@ -32,9 +41,10 @@ export class FightResolver {
     });
 
     if (fight.winnerId) {
-      const loserId = fight.fighter1Id === fight.winnerId
-        ? fight.fighter2Id
-        : fight.fighter1Id;
+      const loserId =
+        fight.fighter1Id === fight.winnerId
+          ? fight.fighter2Id
+          : fight.fighter1Id;
       await this.statisticsService.updateStatisticsAfterFight(
         fight.winnerId,
         loserId,

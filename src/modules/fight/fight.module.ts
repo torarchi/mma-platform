@@ -4,7 +4,6 @@ import { FightOrmEntity } from '../../infrastructure/database/typeorm/fight.orm-
 import { FightRepositoryImpl } from '../../infrastructure/database/repositories/fight.repository.impl';
 import { FightService } from '../../application/services/fight.service';
 import { FightResolver } from './fight.resolver';
-import { FightRepository } from '../../domain/repositories/fight.repository';
 import { FighterStatisticsModule } from '../fighter-statistics/fighter-statistics.module';
 
 @Module({
