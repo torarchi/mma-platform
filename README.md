@@ -31,15 +31,34 @@
 
 ### Шаги по установке и запуску
 
-Клонируйте репозиторий: <br>
+- Клонируйте репозиторий:
+   - git clone https://github.com/torarchi/mma-platform
+   - cd mma-platform
 
-   git clone https://github.com/torarchi/mma-platform <br>
-   cd mma-platform
-   
+- Установите зависимости:
+   - npm install
 
-Если у вас локально не установлен postgresql, то нужно будет либо установить, либо написать 
-<br>
-docker-compose up -d
-<br>
-Затем напишите (если через npm) - npm run dev <br>
-И откройте playground - localhost:3000/graphql
+- Создайте .env файл и запишите туда:
+  ```
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USERNAME=postgres
+   DB_PASSWORD=postgres
+   DB_NAME=mma
+  ```
+
+- Если у вас локально не установлен PostgreSQL, запустите базу данных через Docker:
+   - docker-compose up -d
+
+- Запустите приложение:
+   -npm run start:dev
+
+- Откройте GraphQL playground по адресу http://localhost:3000/graphql
+
+### Архитектура проекта
+- Проект построен с использованием принципов Domain-Driven Design (DDD) и чистой архитектуры:
+
+   - /domain: Содержит бизнес-сущности, репозитории и объекты значений
+   - /application: Сервисы и сценарии использования
+   -  /infrastructure: Реализация репозиториев, настройки базы данных
+   - /modules: GraphQL модули с резолверами, типами и инпутами
