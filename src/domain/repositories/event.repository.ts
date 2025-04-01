@@ -5,4 +5,5 @@ export interface EventRepository {
   findById(id: string): Promise<Event | null>;
   create(event: Event): Promise<Event>;
   delete(id: string): Promise<void>;
+  update(id: string, data: Partial<Event>): Promise<Event>;
 }

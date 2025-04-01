@@ -27,4 +27,13 @@ export class EventRepositoryImpl implements EventRepository {
   async delete(id: string): Promise<void> {
     await this.repo.delete(id);
   }
+
+  async update(id: string, data: Partial<Event>): Promise<Event> {
+    await this.repo.update(id, data);
+    const event = await this.findById(id);
+    if (!event) {
+      throw new Error(`Event with id ${id} not found.`);
+    }
+    return event;
+  }
 }

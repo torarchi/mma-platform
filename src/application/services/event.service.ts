@@ -1,10 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { EventRepository } from '../../domain/repositories/event.repository';
 import { Event } from '../../domain/entities/event.entity';
 
 @Injectable()
 export class EventService {
-  constructor(private readonly eventRepo: EventRepository) {}
+  constructor(
+    @Inject('EventRepository')
+    private readonly eventRepo: EventRepository,
+  ) {}
 
   findAll(): Promise<Event[]> {
     return this.eventRepo.findAll();
@@ -16,6 +19,10 @@ export class EventService {
 
   async create(event: Event): Promise<Event> {
     return this.eventRepo.create(event);
+  }
+
+  async update(id: string, data: Partial<Event>): Promise<Event> {
+    return this.eventRepo.update(id, data);
   }
 
   async delete(id: string): Promise<void> {

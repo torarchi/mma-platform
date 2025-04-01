@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 
 import { FighterModule } from './modules/fighter/fighter.module';
+import { EventModule } from './modules/event/event.module';
+
 
 @Module({
   imports: [
@@ -15,6 +17,7 @@ import { FighterModule } from './modules/fighter/fighter.module';
       playground: true,
     }),
     FighterModule,
+    EventModule,
   ],
 })
 export class AppModule {}
