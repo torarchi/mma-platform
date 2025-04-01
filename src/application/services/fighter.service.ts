@@ -1,10 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { FighterRepository } from '../../domain/repositories/fighter.repository';
 import { Fighter } from '../../domain/entities/fighter.entity';
 
 @Injectable()
 export class FighterService {
-  constructor(private readonly fighterRepo: FighterRepository) {}
+  constructor(
+    @Inject('FighterRepository')
+    private readonly fighterRepo: FighterRepository,
+  ) {}
 
   findAll(): Promise<Fighter[]> {
     return this.fighterRepo.findAll();
