@@ -13,6 +13,8 @@ test-task
 
 **database schema, with relationships** - <br> https://drawsql.app/teams/my-team-1594/diagrams/database-design
 
+**api documentation** - <br> https://docs.google.com/document/d/1a2At_XN91P3vOqfyu6V7dqiHpiBzVquJT5nvDEXN56Y/edit?usp=sharing
+
 
 ## Технологии
 
