@@ -7,7 +7,7 @@ import { typeOrmConfig } from './config/typeorm.config';
 import { FighterModule } from './modules/fighter/fighter.module';
 import { EventModule } from './modules/event/event.module';
 import { FightModule } from './modules/fight/fight.module';
-
+import { FighterStatisticsModule } from './modules/fighter-statistics/fighter-statistics.module';
 
 @Module({
   imports: [
@@ -20,6 +20,7 @@ import { FightModule } from './modules/fight/fight.module';
     FighterModule,
     EventModule,
     FightModule,
+    FighterStatisticsModule,
   ],
 })
 export class AppModule {}
