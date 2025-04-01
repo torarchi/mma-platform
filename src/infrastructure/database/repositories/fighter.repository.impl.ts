@@ -26,7 +26,11 @@ export class FighterRepositoryImpl implements FighterRepository {
 
   async update(id: string, data: Partial<Fighter>): Promise<Fighter> {
     await this.repo.update(id, data);
-    return this.findById(id);
+    const fighter = await this.findById(id);
+    if (!fighter) {
+      throw new Error(`Fighter with id ${id} not found.`);
+    }
+    return fighter;
   }
 
   async delete(id: string): Promise<void> {
