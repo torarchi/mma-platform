@@ -27,4 +27,13 @@ export class FightRepositoryImpl implements FightRepository {
   async delete(id: string): Promise<void> {
     await this.repo.delete(id);
   }
+
+  async update(id: string, data: Partial<Fight>): Promise<Fight> {
+    await this.repo.update(id, data);
+    const fight = await this.findById(id);
+    if (!fight) {
+      throw new Error(`Fight with id ${id} not found.`);
+    }
+    return fight;
+  }
 }

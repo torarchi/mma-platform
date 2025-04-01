@@ -1,10 +1,13 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { FightRepository } from '../../domain/repositories/fight.repository';
 import { Fight } from '../../domain/entities/fight.entity';
 
 @Injectable()
 export class FightService {
-  constructor(private readonly fightRepo: FightRepository) {}
+  constructor(
+    @Inject('FightRepository')
+    private readonly fightRepo: FightRepository
+  ) {}
 
   findAll(): Promise<Fight[]> {
     return this.fightRepo.findAll();
@@ -16,6 +19,10 @@ export class FightService {
 
   async create(fight: Fight): Promise<Fight> {
     return this.fightRepo.create(fight);
+  }
+
+  async update(id: string, data: Partial<Fight>): Promise<Fight> {
+    return this.fightRepo.update(id, data);
   }
 
   async delete(id: string): Promise<void> {

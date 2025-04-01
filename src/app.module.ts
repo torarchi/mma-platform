@@ -6,6 +6,7 @@ import { typeOrmConfig } from './config/typeorm.config';
 
 import { FighterModule } from './modules/fighter/fighter.module';
 import { EventModule } from './modules/event/event.module';
+import { FightModule } from './modules/fight/fight.module';
 
 
 @Module({
@@ -18,6 +19,7 @@ import { EventModule } from './modules/event/event.module';
     }),
     FighterModule,
     EventModule,
+    FightModule,
   ],
 })
 export class AppModule {}
