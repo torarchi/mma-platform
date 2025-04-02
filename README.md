@@ -66,4 +66,4 @@ test-task
    -  /infrastructure: Реализация репозиториев, настройки базы данных
    - /modules: GraphQL модули с резолверами, типами и инпутами
  
-// todo: tests
+// todo: tests and proper validation and error handling. Didn't have time for that(
